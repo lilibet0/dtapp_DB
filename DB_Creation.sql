@@ -1,8 +1,10 @@
-//*
+/*
     References https://www.akc.org/sports/obedience/getting-started/classes/ for exercise descriptions
-*//
+*/
 
-// Table Creations
+/* 
+Table Creations
+*/
 Table 1 Query:
 CREATE TABLE Obedience_Class
 (class_name varchar(20) not null,
@@ -43,7 +45,23 @@ primary key(registered_name),
 foreign key(current_class) references Obedience_Class(class_name)
 foreign key(handler) references Handler(username));
 
-// Table Insertions
+Table 6 Query:
+CREATE TABLE Training_Session
+(date date,
+time time,
+handler varchar(10),
+dog varchar(30),
+exercise varchar(50),
+score int check (0 <= score AND score <= 10),
+elapsed_time_minutes int,
+primary key(date, time, dog),
+foreign key(handler) references Handler(username),
+foreign key(dog) references Dog(registered_name),
+foreign key(exercise) references Exercise(exercise_name));
+
+/* 
+Table Insertions 
+*/
 Table 1 Insert:
 // class name, total possible points, title abbreviation
 INSERT into Obedience_Class VALUES
@@ -90,3 +108,8 @@ Table 5 Insert:
 INSERT INTO Dog VALUES
 ('big dog', 'great kennel dog prancing', 'Open', 'lilibet0'),
 ('small dog', 'great kennel super silly', 'Novice', 'lilibet0');
+
+Table 6 Insert:
+// date, time, handler, dog, exercise, score, elapsed_time_minutes
+INSERT INTO Training_Session VALUES
+(CURRENT_DATE, CURRENT_TIME, 'lilibet0', 'great kennel dog prancing', 'Drop on Recall', 10, 15);
