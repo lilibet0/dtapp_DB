@@ -27,6 +27,21 @@ class_name varchar(20),
 primary key(exercise_name),
 foreign key(class_name) references Obedience_Class(class_name));
 
+Table 4 Query:
+CREATE TABLE Handler
+(username varchar(10),
+password varchar(20),
+primary key(username));
+
+Table 5 Query:
+CREATE TABLE Dog
+(call_name varchar(10),
+registered_name varchar(30),
+current_class varchar(20),
+handler varchar(10),
+primary key(registered_name),
+foreign key(current_class) references Obedience_Class(class_name)
+foreign key(handler) references Handler(username));
 
 // Table Insertions
 Table 1 Insert:
@@ -64,3 +79,14 @@ INSERT INTO Exercise VALUES
 ('Directed Retrieve', 'the features of this exercise prove the dog’s ability to follow a directional signal from the handler to retrieve a glove and promptly return it to the handler.', 30, 'Utility'),
 ('Moving Stand and Examination', 'for this exercise the dog must heel, stand and stay as the handler moves away. The dog must stay and accept an examination by the judge and return to the handler on command.', 30, 'Utility'),
 ('Directed Jumping', 'the dog must go away from the handler, turn and sit. Then, the dog must clear whichever jump its handler indicates and promptly return to the handler.', 40, 'Utility');
+
+Table 4 Insert:
+// username, password
+INSERT INTO Handler VALUES
+('lilibet0', #password_value#);
+
+Table 5 Insert:
+// call name, registered name, current class
+INSERT INTO Dog VALUES
+('big dog', 'great kennel dog prancing', 'Open', 'lilibet0'),
+('small dog', 'great kennel super silly', 'Novice', 'lilibet0');
